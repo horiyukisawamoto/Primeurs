@@ -157,6 +157,8 @@ class Primeurs:
 
         df_final = pd.concat([df_final,merged], axis=0)
 
+        df_final = df_final[df_final['Prix € HT']<=400]
+
         df_final['Vin'] = df_final['Vin'].apply(lambda x: self.vin_dict.get(x.replace('blanc','')) if x not in ['chevalblanc','latourblancheblanc','domainesimonblanchard','jacquesblanc','moulindeblanchon'] else self.vin_dict.get(x))
         df_final['VinDetail'] = df_final['VinDetail'].apply(lambda x: self.vin_detail_dict.get(x))
         df_final['Appellation'] = df_final['Appellation'].apply(lambda x: self.appellation_dict.get(x))
@@ -222,7 +224,7 @@ class Primeurs:
 
         TodaysDate = time.strftime("%d-%m-%Y")
 
-        with pd.ExcelWriter('Primeurs - ' + TodaysDate + '.xlsx') as writer:
+        with pd.ExcelWriter('Primeurs_under_400 - ' + TodaysDate + '.xlsx') as writer:
             pandas.io.formats.excel.ExcelFormatter.header_style = None
 
             sheets_in_writer = ['Primeurs_Dispo_ou_Epuise','Primeurs_A_Venir','ModelChart']
