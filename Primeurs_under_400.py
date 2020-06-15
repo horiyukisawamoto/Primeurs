@@ -50,7 +50,7 @@ class Primeurs:
 
         for elem in data:
             vin.append(re.sub("[^a-zA-Z]+", "",elem.get('wine').split(',')[0].lower().replace('chateau','')))
-            appellation.append(re.sub("[^a-zA-Z]+", "",elem.get('appellation').lower()).replace('bordeauxblanc','bordeaux').replace('moulisenmedoc','moulis'))
+            appellation.append(re.sub("[^a-zA-Z]+", "",elem.get('appellation').lower()))
             color.append(elem.get('color'))
             score.append(elem.get('score'))
             confidence_index.append(conf_convert.get(elem.get('confidence_index')))
@@ -64,6 +64,9 @@ class Primeurs:
         df_gws = pd.DataFrame(zip(vin,vin_detail,appellation,color,score,confidence_index,journalist_count), columns=['Vin','VinDetail','Appellation','Color','Score','Confidence Index','Journalist Count'])
 
         df_gws['VinDetail'] = np.where(np.logical_or(df_gws['VinDetail']==df_gws['Appellation'],df_gws['VinDetail']=='blanc'),"-",df_gws['VinDetail'])
+
+        df_gws['Appellation'] = df_gws['Appellation'].replace('bordeauxblanc','bordeaux')
+        df_gws['Appellation'] = df_gws['Appellation'].replace('moulisenmedoc','moulis')
 
         return df_gws
 
