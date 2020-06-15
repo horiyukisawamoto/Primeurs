@@ -160,13 +160,12 @@ class Primeurs:
 
         df_final = pd.concat([df_final,merged], axis=0)
 
-        df_final = df_final[df_final['Prix € HT']<=400]
-
         df_final['Vin'] = df_final['Vin'].apply(lambda x: self.vin_dict.get(x.replace('blanc','')) if x not in ['chevalblanc','latourblancheblanc','domainesimonblanchard','jacquesblanc','moulindeblanchon'] else self.vin_dict.get(x))
         df_final['VinDetail'] = df_final['VinDetail'].apply(lambda x: self.vin_detail_dict.get(x))
         df_final['Appellation'] = df_final['Appellation'].apply(lambda x: self.appellation_dict.get(x))
 
         df_dispo_epuise = df_final[(df_final['Prix € HT']!='A venir') & (df_final['Prix € HT']!='Epuisé')]
+        df_dispo_epuise = df_dispo_epuise[df_dispo_epuise['Prix € HT']<=400]
 
         df_a_venir = df_final[(df_final['Prix € HT']=='A venir') | (df_final['Prix € HT']=='Epuisé')]
 
