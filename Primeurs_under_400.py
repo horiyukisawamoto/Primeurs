@@ -68,6 +68,8 @@ class Primeurs:
         df_gws['Appellation'] = df_gws['Appellation'].replace('bordeauxblanc','bordeaux')
         df_gws['Appellation'] = df_gws['Appellation'].replace('moulisenmedoc','moulis')
 
+        df_gws['VinDetail'] = df_gws['VinDetail'].replace('grandvindeleoville','-')
+
         self.appellation_dict['moulis'] = 'Moulis'
 
         return df_gws
