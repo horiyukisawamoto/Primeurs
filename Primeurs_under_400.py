@@ -65,12 +65,18 @@ class Primeurs:
 
         df_gws['VinDetail'] = np.where(np.logical_or(df_gws['VinDetail']==df_gws['Appellation'],df_gws['VinDetail']=='blanc'),"-",df_gws['VinDetail'])
 
+        # Mismatch from the 2 databases that can't be hardcoded (different name mappings)
+
         df_gws['Appellation'] = df_gws['Appellation'].replace('bordeauxblanc','bordeaux')
         df_gws['Appellation'] = df_gws['Appellation'].replace('moulisenmedoc','moulis')
 
         df_gws['VinDetail'] = df_gws['VinDetail'].replace('grandvindeleoville','-')
+        df_gws['Vin'] = df_gws['Vin'].replace('devalandraud','valandraud')
+        df_gws['Vin'] = df_gws['Vin'].replace('pichonlonguevillebaron','pichonbaron')
 
         self.appellation_dict['moulis'] = 'Moulis'
+        self.vin_dict['valandraud'] = 'Chateau Valandraud'
+        self.vin_dict['pichonbaron'] = 'Chateau Pichon Baron'
 
         return df_gws
 
