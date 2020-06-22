@@ -78,8 +78,6 @@ class Primeurs:
         self.vin_dict['valandraud'] = 'Chateau Valandraud'
         self.vin_dict['pichonbaron'] = 'Chateau Pichon Baron'
 
-        df_gws.to_csv('gws.csv')
-
         return df_gws
 
     def scrape_chatprim(self):
