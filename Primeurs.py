@@ -112,7 +112,7 @@ class Primeurs:
 
             for wine in wine_price_soup:
                 if wine.find('strong') is not None:
-                    wine_price_list.append(float(wine.find('strong').get_text().replace(',','.').replace('€','')))
+                    wine_price_list.append(float(wine.find('strong').get_text().replace(',','.').replace('€','').replace(' ','')))
 
             for wine in wine_status_soup_avenir:
                     wine_price_list.append(wine.get_text())
