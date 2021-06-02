@@ -4,3 +4,5 @@ Python script to find mispriced Bordeaux primeurs wines through wine merchant da
 Output is an Excel file. 
 
 Dependencies: Python 3.0+, requests, beautifulsoup, pandas, sklearn, seaborn
+
+Here's another change to the README. 
